@@ -24,7 +24,7 @@ class GenerateCodeViewModel: ObservableObject {
         isGenerating = true
         
         // Имитация задержки генерации
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
             self.generateRandomCode()
             self.isGenerating = false
         }
@@ -37,7 +37,7 @@ class GenerateCodeViewModel: ObservableObject {
         generatedCode = Array(repeating: "", count: 6)
         
         // Имитация задержки генерации
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
             self.generateRandomCode()
             self.isGenerating = false
         }

@@ -79,19 +79,15 @@ struct GenerateCodeView: View {
                 Spacer()
                 
                 VStack(spacing: 15) {
-                    DefaultButton(
-                        action: {
-                            if showGeneratedCode {
-                                viewModel.copyCode()
-                            } else {
-                                viewModel.generateCode()
-                            }
-                        },
-                        buttonTitle: showGeneratedCode ? "Скопировать ключ" : "Сгенерировать",
-                        isFill: true
-                    )
-                    
                     if showGeneratedCode {
+                        DefaultButton(
+                            action: {
+                                viewModel.copyCode()
+                            },
+                            buttonTitle: "Скопировать ключ",
+                            isFill: true
+                        )
+                        
                         DefaultButton(
                             action: {
                                 viewModel.generateNewCode()
@@ -115,6 +111,7 @@ struct GenerateCodeView: View {
         .navigationBarBackButtonHidden(true)
         .onAppear {
             isAnimating = true
+            viewModel.generateCode()
         }
         .onReceive(viewModel.$generatedCode) { _ in
             withAnimation(.easeInOut(duration: 0.5)) {
