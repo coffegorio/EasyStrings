@@ -9,6 +9,8 @@ import UIKit
 
 class PreviewRouter: BaseRouter {
     
+    var authRouter: AuthRouter?
+    
     func start() {
         showPreview()
     }
@@ -21,8 +23,9 @@ class PreviewRouter: BaseRouter {
     }
     
     func navigateToAuth() {
-        let authRouter = AuthRouter(navigationController: navigationController)
-        authRouter.showSignIn()
+        let router = AuthRouter(navigationController: navigationController)
+        authRouter = router
+        authRouter?.showSignIn()
     }
     
 }

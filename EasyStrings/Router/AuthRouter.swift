@@ -6,14 +6,15 @@
 //
 
 import UIKit
+import SwiftUI
 
 class AuthRouter: BaseRouter {
     
     func showSignIn() {
-        let viewController = SignInViewController()
         let viewModel = SignInViewModel(router: self)
-        viewController.viewModel = viewModel
-        pushViewController(viewController, animated: true)
+        let view = SignInView(viewModel: viewModel)
+        let hostingController = UIHostingController(rootView: view)
+        pushViewController(hostingController, animated: true)
     }
     
     func showSignUp() {
@@ -21,7 +22,29 @@ class AuthRouter: BaseRouter {
     }
     
     func showReset() {
-        // пока что пусто
+        let viewModel = ResetViewModel(router: self)
+        let view = ResetView(viewModel: viewModel)
+        let hostingController = UIHostingController(rootView: view)
+        pushViewController(hostingController, animated: true)
+    }
+    
+    func showResetCode(email: String) {
+        let viewModel = ResetCodeViewModel(router: self, email: email)
+        let view = ResetCodeView(viewModel: viewModel)
+        let hostingController = UIHostingController(rootView: view)
+        pushViewController(hostingController, animated: true)
+    }
+    
+    func showGenerateCode() {
+        let viewModel = GenerateCodeViewModel(router: self)
+        let view = GenerateCodeView(viewModel: viewModel)
+        let hostingController = UIHostingController(rootView: view)
+        pushViewController(hostingController, animated: true)
+    }
+    
+    func showMainScreen() {
+        // тут будет логика перехода на главный экран
+        print("переход на главный экран")
     }
     
     func popVC() {
